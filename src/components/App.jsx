@@ -1,5 +1,4 @@
-/*import React, { Component } from 'react';
-
+import React, { Component } from 'react';
 import ImageGallery from './ImageGallery';
 import Searchbar from './Searchbar';
 import Button from './Button';
@@ -69,8 +68,9 @@ class App extends Component {
   }
 }
 
-export default App;*/
+export default App;
 
+/*
 import React, { useState, useEffect } from 'react';
 
 import ImageGallery from './ImageGallery';
@@ -134,4 +134,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;*/
