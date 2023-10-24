@@ -122,7 +122,7 @@ useEffect(() => {
       .then((res) => {
         setImages(res.data.hits);
       })
-      .catch((error) => setError(error))
+      /*.catch((error) => setError(error))*/
       .finally(() => setLoading(false));
   }
 }, [imageName, page]);
