@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import css from './Modal.module.css';
 
 class Modal extends Component {
@@ -32,6 +32,41 @@ class Modal extends Component {
       </div>
     );
   }
+}
+
+export default Modal;*/
+
+import React, { useEffect } from 'react';
+import css from './Modal.module.css';
+
+function Modal({ largeImg, tag, closeModal }) {
+  const closeModalEsc = (e) => {
+    if (e.code === 'Escape') {
+      closeModal();
+    }
+  };
+
+  const closeModalBackdrop = (e) => {
+    if (e.currentTarget === e.target) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', closeModalEsc);
+
+    return () => {
+      window.removeEventListener('keydown', closeModalEsc);
+    };
+  }, []);
+
+  return (
+    <div onClick={closeModalBackdrop} className={css.overlay}>
+      <div className={css.modal}>
+        <img src={largeImg} alt={tag} />
+      </div>
+    </div>
+  );
 }
 
 export default Modal;
