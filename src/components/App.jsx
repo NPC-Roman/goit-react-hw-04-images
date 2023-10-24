@@ -70,19 +70,18 @@ class App extends Component {
 export default App;*/
 
 import React, { useState, useEffect } from 'react';
-
 import ImageGallery from './ImageGallery';
 import Searchbar from './Searchbar';
 import Button from './Button';
 import Loader from './Loader';
-import { getImages } from './api';
+/*import { getImages } from './api';*/
 
 function App() {
   const [imageName, setImageName] = useState('');
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [setError] = useState(null);
   const perPage = 12;
 
   const getImages = () => {
@@ -156,5 +155,4 @@ useEffect(() => {
     </>
   );
 }
-
 export default App;
