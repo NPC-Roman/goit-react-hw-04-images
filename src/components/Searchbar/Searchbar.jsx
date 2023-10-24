@@ -1,4 +1,4 @@
-/*import React, { Component } from 'react';
+import React, { Component } from 'react';
 import css from './Searchbar.module.css';
 import { BiSearch } from 'react-icons/bi';
 import { toast } from 'react-toastify';
@@ -45,7 +45,8 @@ class Searchbar extends Component {
     );
   }
 }
-export default Searchbar;*/
+export default Searchbar;
+/*
 import React, { useState } from 'react';
 import css from './Searchbar.module.css';
 import { BiSearch } from 'react-icons/bi';
@@ -90,4 +91,4 @@ function Searchbar({ onSubmit }) {
   );
 }
 
-export default Searchbar;
+export default Searchbar;*/
