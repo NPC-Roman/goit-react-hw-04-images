@@ -75,14 +75,14 @@ import ImageGallery from './ImageGallery';
 import Searchbar from './Searchbar';
 import Button from './Button';
 import Loader from './Loader';
-/*import { getImages } from './api';*/
+import { getImages } from './api';
 
 function App() {
   const [imageName, setImageName] = useState('');
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [/*error,*/ setError] = useState(null);
+  const [error, setError] = useState(null);
   const perPage = 12;
 
   const getImages = () => {
@@ -94,13 +94,40 @@ function App() {
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   };
-
+/*
   useEffect(() => {
     if (imageName !== '' && page === 1) {
       setImages([]);
       getImages();
     }
   }, [imageName, page]);
+*/
+/*----------------------------------*/
+/*
+useEffect(() => {
+  if (imageName !== '' && page === 1) {
+    setImages([]);
+    getImages(imageName, page, perPage)
+      .then((res) => {
+        setImages(res.data.hits);
+      })
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  }
+}, [imageName, page, getImages]);
+/*----------------------------------*/
+useEffect(() => {
+  if (imageName !== '' && page === 1) {
+    setImages([]);
+    getImages(imageName, page, perPage)
+      .then((res) => {
+        setImages(res.data.hits);
+      })
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  }
+}, [imageName, page]);
+
 
   const loadMore = () => {
     setPage(page + 1);

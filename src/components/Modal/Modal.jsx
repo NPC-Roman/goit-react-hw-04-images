@@ -70,6 +70,7 @@ function Modal({ largeImg, tag, closeModal }) {
 }
 
 export default Modal;*/
+/*
 import React, { useEffect } from 'react';
 import css from './Modal.module.css';
 
@@ -94,6 +95,39 @@ function Modal({ largeImg, tag, closeModal }) {
     };
   }, [closeModalEsc]); // Додайте closeModalEsc до залежностей
   // При цьому, якщо closeModalEsc не змінюється, можна використовувати пустий масив залежностей ([]), якщо він не залежить від інших значень або стану.
+
+  return (
+    <div onClick={closeModalBackdrop} className={css.overlay}>
+      <div className={css.modal}>
+        <img src={largeImg} alt={tag} />
+      </div>
+    </div>
+  );
+}
+export default Modal;*/
+import React, { useEffect, useCallback } from 'react';
+import css from './Modal.module.css';
+
+function Modal({ largeImg, tag, closeModal }) {
+  const closeModalEsc = useCallback((e) => {
+    if (e.code === 'Escape') {
+      closeModal();
+    }
+  }, [closeModal]);
+
+  const closeModalBackdrop = (e) => {
+    if (e.currentTarget === e.target) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', closeModalEsc);
+
+    return () => {
+      window.removeEventListener('keydown', closeModalEsc);
+    };
+  }, [closeModalEsc]);
 
   return (
     <div onClick={closeModalBackdrop} className={css.overlay}>
