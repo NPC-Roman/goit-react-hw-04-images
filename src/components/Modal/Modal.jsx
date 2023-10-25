@@ -2,7 +2,22 @@ import { useEffect, useCallback } from 'react';
 import css from './Modal.module.css';
 
 function Modal({ largeImg, tag, closeModal }) {
-  const closeModalEsc = useCallback(
+  const closeModalEsc = e => {
+    if (e.code === 'Escape') {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    const closeModalEscListener = e => closeModalEsc(e);
+
+    window.addEventListener('keydown', closeModalEscListener);
+
+    return () => {
+      window.removeEventListener('keydown', closeModalEscListener);
+    };
+  }, [closeModal]);
+  /*  const closeModalEsc = useCallback(
     e => {
       if (e.code === 'Escape') {
         closeModal();
@@ -10,13 +25,13 @@ function Modal({ largeImg, tag, closeModal }) {
     },
     [closeModal]
   );
-
+*/
   const closeModalBackdrop = e => {
     if (e.currentTarget === e.target) {
       closeModal();
     }
   };
-
+  /*
   useEffect(() => {
     window.addEventListener('keydown', closeModalEsc);
 
@@ -24,7 +39,7 @@ function Modal({ largeImg, tag, closeModal }) {
       window.removeEventListener('keydown', closeModalEsc);
     };
   }, [closeModalEsc]);
-
+*/
   return (
     <div onClick={closeModalBackdrop} className={css.overlay}>
       <div className={css.modal}>
